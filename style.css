@@ -20,7 +20,7 @@ body {
   min-height: 100vh;
 }
 .register {
-  flex: 1 0 auto; /* Allows the register section to grow but not shrink below content */
+  margin-bottom: 0%;
 }
 footer,
 nav,
