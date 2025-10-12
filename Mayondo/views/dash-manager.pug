@@ -1,0 +1,72 @@
+include layout-1
+section.container.py-5 
+    h2.mb-5.brand-title.text-center Welcome Manager #{currentUserName}
+
+    // ======= Stats Row =======
+    .row.g-4.mb-5
+      .col-md-3
+        .card.p-4.text-center.shadow-lg
+          i.fas.fa-dollar-sign.fa-2x.text-primary.mb-3
+          h5.text-muted Total Cost
+          p.text-success.fw-bold Raw Materials: #{new Intl.NumberFormat().format(totalCostRawMaterials.totalCost)}
+          p.text-success.fw-bold Chairs: #{new Intl.NumberFormat().format(totalCostChairs.totalCost)}
+          p.text-success.fw-bold Shelves: #{new Intl.NumberFormat().format(totalCostShelves.totalCost)}
+          p.text-success.fw-bold Tables: #{new Intl.NumberFormat().format(totalCostTables.totalCost)}
+          p.text-success.fw-bold Cabinets: #{new Intl.NumberFormat().format(totalCostCabinets.totalCost)}
+          hr
+          h5.text-success.fw-bold Total Cost:  
+            span #{new Intl.NumberFormat().format((totalCostRawMaterials.totalCost) + (totalCostChairs.totalCost) + (totalCostShelves.totalCost) + (totalCostTables.totalCost) + (totalCostCabinets.totalCost))}
+      .col-md-3
+        .card.p-4.text-center.shadow-lg
+          i.fas.fa-shopping-cart.fa-2x.text-primary.mb-3
+          h5.text-muted 
+            a(href="/sales/saleslist" class="text-decoration-none text-reset") Total Sales
+          p#totalOrders.fw-bold.text-primary #{totalSales || 0}
+      .col-md-3
+        .card.p-4.text-center.shadow-lg
+          i.fas.fa-boxes.fa-2x.text-warning.mb-3
+          h5.text-muted 
+            a(href="/stock/products" class="text-decoration-none text-reset") Total Stock Items
+          p#stockItems.fw-bold.text-warning #{totalItems}
+      .col-md-3
+        .card.p-4.text-center.shadow-lg
+          i.fas.fa-boxes.fa-2x.text-warning.mb-3
+          h5.text-muted 
+            a(href="/users" class="text-decoration-none text-reset") Total Agents
+          p#stockItems.fw-bold.text-warning #{totalUsers}
+  
+    .row.g-4
+      .col-md-6
+        .card.p-3.shadow-lg
+          h5.card-title Sales Trend (Monthly)
+          canvas#salesChart(height='150')
+      .col-md-6
+        .card.p-3.shadow-lg
+          h5.card-title Top Selling Products
+          canvas#topProductsChart(height='150')
+
+    // ======= Recent Sales Table =======
+    .row.mt-5
+      .col-md-12
+        .card.p-4.shadow-lg
+          h5.mb-3 Recent Sales
+          table.table.table-striped.table-hover
+            thead.table-dark
+              tr
+                th Date
+                th Product
+                th Quantity
+                th Total (UGX)
+                th Sales Agent
+            tbody
+              if recentSales.length
+                each sale in recentSales
+                  tr
+                    td #{moment(sale.date).format('DD-MM-YYYY')}
+                    td #{sale.productName}
+                    td #{sale.quantity}
+                    td #{new Intl.NumberFormat().format(sale.total)}
+                    td #{sale.agent}
+              else
+                tr
+                  td.text-center(colspan='5') No recent sales recorded.

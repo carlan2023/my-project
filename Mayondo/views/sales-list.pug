@@ -1,0 +1,44 @@
+if currentUser==='manager'
+  include layout-1
+else 
+  include layout-2
+section.container.py-5
+  h2.brand-title.text-center.mb-5 Sales Records
+  .card.shadow-lg.p-4
+    .table-responsive
+      table#salesTable.table.table-striped.table-hover
+        thead.table-dark
+          tr
+            th(scope='col')  Customer
+            th(scope='col')  Agent
+            th(scope='col')  Type
+            th(scope='col')  Product
+            th(scope='col')  Quantity
+            th(scope='col')  Price
+            th(scope='col')  Date
+            th(scope='col')  Total
+        tbody
+            if items.length
+                each item in items
+                    tr
+                        td #{item.customer}
+                        td #{item.agent}
+                        td #{item.type}
+                        td #{item.product}
+                        td #{item.quantity}
+                        td #{item.price}
+                        td #{moment(item.date).format('DD-MM-YYYY')}
+                        td #{item.name}
+                        td #{item.price * item.quantity}
+                
+
+                        //- td #{item.total}
+                        //- td #{}
+                        //- td #{}
+                        //- td #{}
+                        //- td #{}
+                        //- td #{}
+                        
+                 
+//-           // Sales data will be dynamically added here
+//- script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js')

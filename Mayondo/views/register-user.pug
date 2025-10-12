@@ -1,0 +1,44 @@
+if currentUser==='manager'
+  include layout-1
+else 
+  include layout-2
+section.container.py-5
+  .row.justify-content-center
+    .col-lg-7
+      .card.p-4.p-lg-5
+        .text-center.mb-4
+          i.fas.fa-user-tie.fa-3x.mb-3(style='color: #ff6219')
+          h2.brand-title.fw-bold Register Manager
+          p.text-muted Fill in the details to add a new manager
+        form#managerForm(action='/register-user' method='post' novalidate='')
+          .mb-3
+            label.form-label Full Name
+            input#name.form-control(type='text' required='' name ='name')
+            .invalid-feedback Name is required.
+          .mb-3
+            label.form-label Email
+            input#email.form-control(type='email' required='' name ="email")
+            .invalid-feedback Enter a valid email.
+          .mb-3
+            label.form-label Phone Number
+            input#phone.form-control(type='tel' required='' name = "phone")
+            .invalid-feedback Phone number is required.
+          .mb-3
+            label.form-label Password
+            input#password.form-control(type='password' required='' name='password')
+            .invalid-feedback
+              | Password must have uppercase, lowercase, digit, min 6 chars.
+          .mb-3
+            label.form-label Role
+            select#role.form-select(required='' name='role' )
+              option(value='' selected='') Choose
+              option(value='manager') Manager
+              option(value='agent') Sales Agent
+          .col-md-3
+            label.form-label Date
+            input#date.form-control(type='date' required='' name='date')
+          button.btn.btn-primary.w-100(type='submit')
+            i.fas.fa-user-check
+            |  Register Manager
+script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js')
+script(src='./js/manager.js')

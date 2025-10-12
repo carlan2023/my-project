@@ -1,0 +1,76 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background: url("../images/download.jpeg") no-repeat center center/cover;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  color: #333;
+}
+
+.brand-title {
+  font-family: "Playfair Display", serif;
+  color: #078fc5;
+}
+.card {
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  opacity: 0.7;
+}
+.btn-primary {
+  background-color: #078fc5 !important;
+  border: none !important;
+}
+
+.register {
+  background-image: url(/images/ply.jpg);
+  background-size: cover; /* Ensures the image covers the container */
+  background-position: center; /* Centers the image */
+  min-height: 100vh; /* Full viewport height as a minimum */
+  padding-bottom: 60px; /* Space for footer */
+}
+
+.register span {
+  color: forestgreen;
+}
+
+.login {
+  opacity: 0.8; /* Keep this if intended for transparency */
+  /* Remove height: 50% to allow content to determine height */
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.register {
+  margin-bottom: 0%;
+}
+footer,
+nav,
+.bg-body-secondary {
+  flex-shrink: 0; /* Prevents footer from shrinking */
+  background-color: black;
+  color: whitesmoke;
+}
+
+.brand-title {
+  font-family: "Playfair Display", serif;
+  color: #ff6219;
+}
+.btn-primary {
+  background-color: #ff6219 !important;
+  border: none !important;
+}
+.btn-outline-primary {
+  border-color: #ff6219 !important;
+  color: #ff6219 !important;
+}
+.btn-outline-primary:hover {
+  background-color: #ff6219 !important;
+  color: #fff !important;
+}
+h1 {
+  color: green;
+}

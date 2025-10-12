@@ -1,0 +1,54 @@
+include layout-2
+section.container.py-5
+  h2.mb-5.brand-title.text-center Seller Dashboard
+  // Stats Row
+  .row.g-4.mb-5
+    .col-md-3
+      .stat-card.text-center
+        i.fas.fa-dollar-sign.fa-2x.text-primary.mb-2
+        h5 Total Sales
+        p#totalSales.fw-bold.text-success $2,500
+    .col-md-3
+      .stat-card.text-center
+        i.fas.fa-shopping-cart.fa-2x.text-primary.mb-2
+        h5 Total Orders
+        p#totalOrders.fw-bold.text-primary 20
+    .col-md-3
+      .stat-card.text-center
+        i.fas.fa-truck.fa-2x.text-primary.mb-2
+        h5 Pending Deliveries
+        p#pendingDeliveries.fw-bold.text-danger 8
+  .row.g-4
+      .col-md-6
+        .card.p-3.shadow-lg
+          h5.card-title Sales Trend (Monthly)
+          canvas#salesChart(height='150')
+      .col-md-6
+        .card.p-3.shadow-lg
+          h5.card-title Top Selling Products
+          canvas#topProductsChart(height='150')
+
+  .row.mt-5
+    .col-md-12
+      .card.p-4.shadow-lg
+        h5.mb-3 Recent Sales
+        table.table.table-striped.table-hover
+          thead.table-dark
+            tr
+              th Date
+              th Product
+              th Quantity
+              th Total (UGX)
+              th Sales Agent
+          tbody
+            if recentSales.length
+              each sale in recentSales
+                tr
+                  td #{moment(sale.date).format('DD-MM-YYYY')}
+                  td #{sale.productName}
+                  td #{sale.quantity}
+                  td #{new Intl.NumberFormat().format(sale.total)}
+                  td #{sale.agent}
+            else
+              tr
+                td.text-center(colspan='5') No recent sales recorded.

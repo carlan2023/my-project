@@ -1,0 +1,74 @@
+if currentUser !== 'manager'
+  script.
+    window.location.href = '/unauthorized';
+include layout-1.pug
+section.container.py-5
+  h2.brand-title.text-center.mb-5 Registered Users
+  .card.shadow-lg.p-4
+    .d-flex.justify-content-between.mb-3
+      input#searchInput.form-control.w-50(type='text' placeholder='🔍 Search users...')
+      button#exportBtn.btn.btn-outline-primary.btn-sm
+        i.fas.fa-file-export
+        |  Export CSV
+    .table-responsive
+        table#usersTable.table.table-striped.table-hover
+          thead.table-dark
+            tr
+              th Name
+              th Email
+              th Phone
+              th Role
+              th Date Registered
+          tbody
+            if users.length
+              each user in users 
+                tr 
+                  td #{user.name}
+                  td #{user.email}
+                  td #{user.phone}
+                  td #{user.role}
+                  td #{moment(user.date).format('DD-MM-YY')}
+
+            // Data will be injected
+//- script.
+//-   // Dummy users (later fetch from backend)
+//-   const users = [
+//-   { name: "Allan Mitanda", email: "allan@mwf.com", phone: "+256700123456", role: "Admin", date: "2025-07-01" },
+//-   { name: "Sarah N", email: "sarah@mwf.com", phone: "+256701234567", role: "Manager", date: "2025-07-05" },
+//-   { name: "John K", email: "john@mwf.com", phone: "+256702345678", role: "Sales Agent", date: "2025-07-10" },
+//-   { name: "Mary A", email: "mary@mwf.com", phone: "+256703456789", role: "Sales Agent", date: "2025-07-15" }
+//-   ];
+//-   const tableBody = document.querySelector("#usersTable tbody");
+//-   function loadUsers(list) {
+//-   tableBody.innerHTML = "";
+//-   list.forEach(user => {
+//-   const row = `
+//-   <tr>
+//-   <td>${user.name}</td>
+//-   <td>${user.email}</td>
+//-   <td>${user.phone}</td>
+//-   <td>${user.role}</td>
+//-   <td>${user.date}</td>
+//-   </tr>
+//-   `;
+//-   tableBody.insertAdjacentHTML("beforeend", row);
+//-   });
+//-   }
+//-   // Initial load
+//-   loadUsers(users);
+//-   // Search filter
+//-   document.getElementById("searchInput").addEventListener("keyup", (e) => {
+//-   const value = e.target.value.toLowerCase();
+//-   const filtered = users.filter(u =>
+//-   u.name.toLowerCase().includes(value) ||
+//-   u.email.toLowerCase().includes(value) ||
+//-   u.role.toLowerCase().includes(value)
+//-   );
+//-   loadUsers(filtered);
+//-   });
+//-   // Export CSV
+//-   document.getElementById("exportBtn").addEventListener("click", () => {
+//-   const rows = [["Name","Email","Phone","Role","Date"]];
+//-   users.forEach(u => rows.push([u.name,u.email,u.phone,u.role,u.date]));
+//-   const csv = rows.map(r => r.join(",")).join("\\n");
+//-   const blob = n

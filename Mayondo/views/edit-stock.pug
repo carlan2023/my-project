@@ -1,0 +1,51 @@
+if currentUser==='manager'
+  include layout-1
+else 
+  include layout-2
+section.container.py-5
+  .row.justify-content-center
+    .col-lg-7
+      .card.p-4.p-lg-5
+        .text-center.mb-4
+          i.fas.fa-box-open.fa-3x.mb-3(style='color: #ff6219')
+          h2.brand-title.fw-bold Edit Stock
+          p.text-muted Edit inventory details below.
+        
+        form#stockForm(action=`/stock/edit-stock/${stock._id}?_method=PUT` method='post' enctype='multipart/form-data')
+          .mb-3
+            label.form-label(for='productName') Product Name
+            input#productName.form-control(type='text', name='productName', required, value=stock.productName)
+            .invalid-feedback Product name is required.
+
+          .mb-3
+            label.form-label(for='category') Category
+            select#category.form-select(name='category', required)
+              option(value='' disabled selected=!(stock.category)) Choose category
+              option(value='Chairs', selected=stock.category==='Chairs') Chairs
+              option(value='Tables', selected=stock.category==='Tables') Tables
+              option(value='Cabinets', selected=stock.category==='Cabinets') Cabinets
+              option(value='Shelves', selected=stock.category==='Shelves') Shelves
+              option(value='Others', selected=stock.category==='Others') Raw Materials
+            .invalid-feedback Please select a category.
+
+          .mb-3
+            label.form-label(for='quantity') Quantity
+            input#quantity.form-control(type='number', min='1', name='quantity', required, value=stock.quantity)
+            .invalid-feedback Quantity must be at least 1.
+
+          .mb-3
+            label.form-label(for='price') Unit Price (UGX)
+            input#price.form-control(type='number', min='100', name='price', required, value=stock.price)
+            .invalid-feedback Enter a valid price.
+
+          .mb-3
+            label.form-label Upload Image (optional)
+            input#image.form-control(type='file', name='image', accept='image/*')
+            if stock.image
+              small.text-muted.mt-1 Current image:
+              br
+              img(src='/' + stock.image, alt='Product Image', width='120')
+
+          button.btn.btn-primary.w-100(type='submit')
+            i.fas.fa-save.me-2
+            | Update Stock

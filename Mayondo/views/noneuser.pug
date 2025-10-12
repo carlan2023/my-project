@@ -1,0 +1,11 @@
+doctype html
+if currentUser==='manager'
+  include layout-1
+else 
+  include layout-2
+body
+    p You don't match any user in this system
+
+body 
+    block content 
+    include footer

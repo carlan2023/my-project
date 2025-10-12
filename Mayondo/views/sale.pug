@@ -1,0 +1,117 @@
+if currentUser.role !== 'manager'
+  script.
+    window.location.href = '/unauthorized';
+include layout-1.pug
+section.container.py-5
+  h2.brand-title.text-center.mb-5 Record a Sale
+  .card.shadow-lg.p-4.mb-5
+    form#salesForm.row.g-3(action="/stock/addSale" method='post')
+      .mb-3
+        label.form-label Category
+        select#category.form-select(required='' name ='category')
+          option(value='' selected='' disabled='') Choose category
+          option(value='Chairs') Chairs
+          option(value='Tables') Tables
+          option(value='Cabinets') Cabinets
+          option(value='Shelves') Shelves
+          option(value='Others') Raw Materials
+        .invalid-feedback Please select a category.
+      .col-md-6
+        label.form-label Customer Name
+        input#customer.form-control(type='text' required='' name='customer')
+      .col-md-6
+        label.form-label Sales Agent
+        input#agent.form-control(type='text' required='' name='agent')
+      .col-md-4
+        label.form-label Product Type
+        select#productType.form-select(required='' name='type')
+          option(value='wood') Wood
+          option(value='furniture') Furniture
+      .col-md-4
+        label.form-label Product Name
+        input#productName.form-control(type='text' required='' name='product')
+      .col-md-4
+        label.form-label Quantity
+        input#quantity.form-control(type='number' required='' name='quantity')
+      .col-md-3
+        label.form-label Unit Price
+        input#unitPrice.form-control(type='number' required='' name='price')
+      .col-md-3
+        label.form-label Transport
+        select#transport.form-select(name='transport')
+          option(value='no') No
+          option(value='yes') Yes (+5%)
+      .col-md-3
+        label.form-label Payment Type
+        select#payment.form-select(required='' name='method')
+          option(value='cash') Cash
+          option(value='cheque') Cheque
+          option(value='bank') Bank Overdraft
+      .col-md-3
+        label.form-label Date
+        input#date.form-control(type='date' required='' name='date')
+      .col-12.text-center
+        button.btn.btn-primary(type='submit')
+          i.fas.fa-receipt
+          |  Record Sale
+  // Sales Records Table
+  //- .card.shadow-lg.p-4
+  //-   h5.card-title.mb-3 Sales Records
+  //-   //- table#salesTable.table.table-striped.table-hover
+  //-   //-   thead.table-dark
+  //-   //-   //-   tr
+    //-   //-     th Customer
+      //-     th Product
+      //-     th Qty
+      //-     th Unit Price
+      //-     th Transport
+      //-     th Total
+      //-     th Payment
+      //-     th Agent
+      //-     th Date
+      //- tbody
+    
+                        //- td #{}
+                        //- td #{}
+                        //- td #{}
+                        //- td #{}
+                
+        
+//- script.
+//-   const salesForm = document.getElementById("salesForm");
+//-   const salesTable = document.querySelector("#salesTable tbody");
+//-   salesForm.addEventListener("submit", (e) => {
+//-   e.preventDefault();
+//-   const customer = document.getElementById("customer").value;
+//-   const agent = document.getElementById("agent").value;
+//-   const productName = document.getElementById("productName").value;
+//-   const productType = document.getElementById("productType").value;
+//-   const qty = parseInt(document.getElementById("quantity").value);
+//-   const unitPrice = parseFloat(
+//-   document.getElementById("unitPrice").value
+//-   );
+//-   const transport = document.getElementById("transport").value;
+//-   const payment = document.getElementById("payment").value;
+//-   const date = document.getElementById("date").value;
+//-   // calculate total
+//-   let total = qty * unitPrice;
+//-   if (transport === "yes") {
+//-   total *= 1.05; // add 5%
+//-   }
+//-   // Add row to table
+//-   const row = document.createElement("tr");
+//-   row.innerHTML = `
+//-   <td>${customer}</td>
+//-   <td>${productName} (${productType})</td>
+//-   <td>${qty}</td>
+//-   <td>$${unitPrice.toFixed(2)}</td>
+//-   <td>${transport === "yes" ? "Yes (+5%)" : "No"}</td>
+//-   <td>$${total.toFixed(2)}</td>
+//-   <td>${payment}</td>
+//-   <td>${agent}</td>
+//-   <td>${date}</td>
+//-   `;
+//-   salesTable.appendChild(row);
+//-   salesForm.reset();
+//-   });
+//- script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js')

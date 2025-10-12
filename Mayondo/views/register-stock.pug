@@ -1,0 +1,44 @@
+if currentUser==='manager'
+  include layout-1
+else 
+  include layout-2
+section.container.py-5
+  .row.justify-content-center
+    .col-lg-7
+      .card.p-4.p-lg-5
+        .text-center.mb-4
+          i.fas.fa-box-open.fa-3x.mb-3(style='color: #ff6219')
+          h2.brand-title.fw-bold Register New Stock
+          p.text-muted Add new product to inventory
+        form#stockForm(action ='/stock/register-stock' method='post' enctype ='multipart/form-data')
+          .mb-3
+            label.form-label Product Name
+            input#productName.form-control(type='text' required='' name='productName')
+            .invalid-feedback Product name is required.
+          .mb-3
+            label.form-label Category
+            select#category.form-select(required='' name ='category')
+              option(value='' selected='' disabled='') Choose category
+              option(value='Chairs') Chairs
+              option(value='Tables') Tables
+              option(value='Cabinets') Cabinets
+              option(value='Shelves') Shelves
+              option(value='Others') Raw Materials
+            .invalid-feedback Please select a category.
+          .mb-3
+            label.form-label Quantity
+            input#quantity.form-control(type='number' min='1' required='' name ='quantity')
+            .invalid-feedback Quantity must be at least 1.
+          .mb-3
+            label.form-label Unit Price (UGX)
+            input#price.form-control(type='number' min='100' required='' name='price')
+            .invalid-feedback Enter a valid price.
+          .mb-3
+            label.form-label Upload Image
+            input#image.form-control(type='file' name="image")
+            .invalid-feedback
+              | Please upload a product image.
+          button.btn.btn-primary.w-100(type='submit')
+            i.fas.fa-plus-circle
+            |  Add Stock
+//- script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js')
