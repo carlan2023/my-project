@@ -5,18 +5,15 @@ const UserModel = require("../models/userModel");
 const StockModel = require("../models/stockModel");
 const SalesModel = require("../models/salesModel");
 const userModel = require("../models/userModel");
+const { ensureAuthenticated, ensureManager } = require("../middleware/auth");
 
 // signup form
 router.get("/", (req, res) => {
   res.render("index", { title: "Landing Page" });
 });
 
-router.get("/register-user", async (req, res) => {
-  let currentUser = req.session.user.role;
-  if (currentUser !== "manager") {
-    return res.status(403).send("Only managers can register new users");
-  }
-  res.render("register-user", { currentUser, title: "register new user" });
+router.get("/register-user", ensureManager, async (req, res) => {
+  res.render("register-user", { title: "register new user" });
 });
 
 router.post("/register-user", async (req, res) => {
