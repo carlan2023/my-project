@@ -34,7 +34,7 @@ const UserModel = require("./models/userModel");
 const authRoutes = require("./routes/authRoutes");
 const stockRoutes = require("./routes/stockRoutes");
 const salesRoutes = require("./routes/salesRoutes");
-const usersRoutes = require("./routes/stockRoutes");
+const usersRoutes = require("./routes/userRoutes");
 
 // const { console } = require("inspector");
 //Instantiations
@@ -93,5 +93,5 @@ app.use("/stock", stockRoutes);
 app.use("/sales", salesRoutes);
 app.use("/user", usersRoutes);
 
-//Bootstrapping a server
-app.listen(3200, () => console.log("Listening"));
+module.exports = app;
+module.exports.upload = upload;
